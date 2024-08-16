@@ -1,4 +1,31 @@
 -- Constants
+local KEY = "+_$@3sAS!1s/%%%/zx/clilç~csaç!@#$2134)"
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+-- Verificar a chave
+local Window2 = OrionLib:MakeWindow({Name = "CEA HUB (Premium) KeyChecker", HidePremium = false, SaveConfig = true, ConfigFolder = "KEY"})
+local lol = Window2:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://18964510076",
+	PremiumOnly = false
+})
+lol:AddTextbox({
+	Name = "KeyCheck",
+	Default = "Key",
+	TextDisappear = true,
+	Callback = function(Value)
+		if Value == KEY then
+			OrionLib:MakeNotification({
+				Name = "Key Accepted",
+				Content = "Key Accepted, CEA HUB Loaded!"
+			})
+		else
+			OrionLib:MakeNotification({
+				Name = "Key Error",
+				Content = "Key Error, CEA HUB not Loaded!"
+			})
+		end
+	end	  
+})
 local NOTIFICATION_TIME = 5
 local HITBOX_SIZE = Vector3.new(2, 2, 2) -- Ajuste o tamanho da hitbox aqui
 local HITBOX_COLOR = Color3.new(1, 0, 0) -- Ajuste a cor da hitbox aqui
@@ -25,11 +52,13 @@ if StarterCharacterService:IsA('LocalScript') then
 		antiCheatScript.Disabled = true
 	else
 		print('Anti-Cheat not detected.')
+		OrionLib:MakeNotification({
+			Name = 'Error When Bypassing Anti-Cheat, Error code: 901291',
+			Content = 'Please Contact alr_dev or sub owners or developer.'
+		})
 	end
 end
 
--- Load OrionLib
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 -- Make notification
 OrionLib:MakeNotification({
